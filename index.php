@@ -7,7 +7,7 @@
       <meta name="description" content="GLR.WEB is voor de studenten van Grafisch Lyceum Rotterdam om hun stage...">
       <meta name="keywords" content="GLR, GLR.WEB, Stage, Stagewebsite, Grafisch Lyceum Rotterdam">
       <title>GLR.WEB - Home</title>
-    <link rel="stylesheet" href="master.css" type="text/css">
+    <link rel="stylesheet" href="css/master.css" type="text/css">
 
 </head>
 <body>
