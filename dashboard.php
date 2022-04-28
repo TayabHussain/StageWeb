@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+require "php/config.php";
+
+
 // session php here**
 ?>
 
@@ -11,8 +14,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GLR.WEB is voor de studenten van Grafisch Lyceum Rotterdam om hun stage te registreren">
     <meta name="keywords" content="GLR, GLR.WEB, Stage, Stagewebsite, Grafisch Lyceum Rotterdam">
-    <title>GLR.WEB - Login</title>
-    <link rel="stylesheet" href="css/style_login.css" rel="stylesheet" type="text/css">
+    <title>GLR.WEB - Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+
 </head>
 <body>
 <div class="container">
@@ -36,6 +40,15 @@ session_start();
             </ul>
         </div>
     </nav>
+</div>
+<div class="dashboard">
+<h1>Welcome back, <?php ?></h1><br>
+    <button class="button button6">Register Internship</button>
+    <br>
+    <button class="button button7">Update Internship</button>
+    <br>
+    <button class="button button8" >Delete Internship</button>
+    <br>
 </div>
 </body>
 </html>

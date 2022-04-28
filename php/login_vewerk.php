@@ -20,7 +20,7 @@ if (strlen($studentnummer) && strlen($wachtwoord) > 0) {
         header("Location: ../dashboard.php");
     }
     else {
-        echo "something went bad";
+        echo "Wrong password/username!";
         exit();
     }
 }

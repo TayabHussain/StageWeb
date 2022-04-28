@@ -36,7 +36,7 @@
       <div class="body">
             <h1><strong>Register your internship today.</strong></h1>
             <p>GLR Internship 2022</p>
-            <button class="button button5">Click here</button>
+            <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard.php'">Register Now</button>
       </div>
 </body>
 </html>
