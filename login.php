@@ -1,14 +1,14 @@
 <?php
-session_start();
-require 'php/config.php';
-
-// Session if logged in
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: dashboard.php");
-    exit;
-} else {
-    header("Location: index.php");
-}
+//session_start();
+//require 'php/config.php';
+//
+//// Session if logged in
+//if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+//    header("location: dashboard.php");
+//    exit;
+//} else {
+//    header("Location: index.php");
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
