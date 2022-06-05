@@ -47,8 +47,8 @@
 <div class="body">
     <h1>Login</h1>
     <form action="php/login_vewerk.php" method="post">
-        <input type="number" maxlength="5" class="css-input" name="studentnummer" required placeholder="StudentNo."><br><br>
-        <input type="password" maxlength="20" class="css-input" name="password" required placeholder="Password"><br><br>
+        <input type="number" maxlength="5" class="css-input" name="studentNo" required placeholder="StudentNo."><br><br>
+        <input type="password" maxlength="20" class="css-input" name="wachtwoord" required placeholder="Password"><br><br>
         <button type="submit" class="button button5">Login</button>
     </form>
 
