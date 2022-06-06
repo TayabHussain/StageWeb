@@ -24,6 +24,9 @@
                   </div>
                   <div class="nav-wrapper">
                         <ul>
+                            <?php
+                            $_SESSION['studentNo'] = '';
+                            ?>
                               <!--HEADER PHP KOMT HIER NOG-->
                               <li><a href="#">Home</a></li>
                               <li><a href="dashboard.php">Dashboard</a></li>
