@@ -53,8 +53,5 @@ session_start();
 </div>
 <div class="body">
     <h1>Something went wrong try again.</h1><br><br>
-    <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard.php'">Go To Dashboard</button>
-    <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/create_student.php'">Try Again</button>
-
-
+    <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/index.php'">Home</button>
 </div>

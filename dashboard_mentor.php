@@ -32,11 +32,26 @@ require "php/config.php";
         </div>
         <div class="nav-wrapper">
             <ul>
+
                 <!--HEADER PHP KOMT HIER NOG-->
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#">Dashboard</a></li>
+                <?php
+                if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
+                } else {
+                    echo '<li><a href="dashboard.php">Dashboard</a></li>';
+
+                }
+                ?>
+                <?php
+                if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
+
+                } else {
+                    echo '<li><a href="dashboard_mentor.php">Dashboard</a></li>';
+                }
+                ?>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="logout.php">Logout</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
         </div>
     </nav>

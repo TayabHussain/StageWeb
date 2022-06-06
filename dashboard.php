@@ -3,6 +3,11 @@ session_start();
 
 require "php/config.php";
 
+if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
+header("Location: index.php");
+exit;
+}
+
 
 // session php here**
 ?>
@@ -32,17 +37,32 @@ require "php/config.php";
         </div>
         <div class="nav-wrapper">
             <ul>
+
                 <!--HEADER PHP KOMT HIER NOG-->
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#">Dashboard</a></li>
+                <?php
+                if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
+                } else {
+                    echo '<li><a href="dashboard.php">Dashboard</a></li>';
+
+                }
+                ?>
+                <?php
+                if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
+
+                } else {
+                    echo '<li><a href="dashboard_mentor.php">Dashboard</a></li>';
+                }
+                ?>
                 <li><a href="login.php">Login</a></li>
                 <li><a href="logout.php">Logout</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
         </div>
     </nav>
 </div>
 <div class="dashboard">
-<h1>Welcome back</h1><br>
+<h1>Welcome back, <?php echo $_SESSION['voornaam']; ?></h1><br>
     <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/create_student.php'">Register Internship</button>
     <br>
     <button class="button button7" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/update_student.php'">Update Internship</button>

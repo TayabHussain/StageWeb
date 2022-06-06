@@ -1,27 +1,26 @@
 <?php
 require 'config.php';
 session_start();
-$MentorNo = $_POST['MentorNo'];
+$mentorNo = $_POST['mentorNo'];
 $wachtwoord = $_POST['wachtwoord'];
 
-if (strlen($MentorNo) && strlen($wachtwoord) > 0) {
+if (strlen($mentorNo) && strlen($wachtwoord) > 0) {
 
     $wachtwoord = sha1($wachtwoord);
 
-    $sql = "SELECT * FROM Users_Mentor WHERE mentorNo = '$MentorNo' AND wachtwoord = '$wachtwoord'  ";
+    $sql = "SELECT * FROM Users_Mentor WHERE mentorNo = '$mentorNo' AND wachtwoord = '$wachtwoord'  ";
 
     $result = mysqli_query($link, $sql);
 
     if (mysqli_num_rows($result) == 1) {
 
 
-        $_SESSION['mentorNo'] = $MentorNo;
+        $_SESSION['mentorNo'] = $mentorNo;
 
         header("Location: ../dashboard_mentor.php");
     }
     else {
-        echo "Wrong password/username!";
-        exit();
+        header("Location: ../error_login.php");
     }
 }
 ?>
