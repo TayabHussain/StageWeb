@@ -57,6 +57,15 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
 <div class="body">
     <h1>Add Internship</h1>
 <!--    <p>Add your internship information here.</p>-->
+<!--    --><?php
+//    $check = mysqli_query($link, "SELECT * FROM Stage_Student WHERE StudentID = '" . $_SESSION['studentNo'] . "'");
+//
+//    if (mysqli_num_rows($check) == 1) {
+//        echo "<strong>You already have a internship. You can make a new one by deleting it or update it.</strong>";
+//    } else {
+//        echo "form";
+//    }
+//    ?>
     <form action="php/create_student_verwerk.php" method="post">
         <label>Yes I have a contract</label>
         <input type="radio" class="css-input" name="contract" id="contract_y" value="Contract made"><br><br>

@@ -77,9 +77,9 @@ if (is_numeric($studentID)) {
     <form action="php/update_student_verwerk.php" method="post">
         <input type="hidden" name="StudentID" value="<?php echo $studentID; ?>">
         <label>Yes I have a contract</label>
-        <input type="radio" class="css-input" name="contract" id="contract_y" value="<?php if($row['contract'] == 'Contract made') echo 'checked="checked"';?>"><br><br>
+        <input type="radio" class="css-input" name="contract" id="contract_y" value="Contract made" <?php if($row['contract'] == 'Contract made') echo 'checked="checked"';?>><br><br>
         <label>No I haven't</label>
-        <input type="radio" class="css-input" name="contract" id="contract_n" value="<?php if($row['contract'] == 'No contract made') echo 'checked="checked"';?>"><br><br>
+        <input type="radio" class="css-input" name="contract" id="contract_n" value="No contract made" <?php if($row['contract'] == 'No contract made') echo 'checked="checked"';?>><br><br>
 
         <input type="date" class="css-input" name="datumBedrijf" required value="<?php echo $row['datumBedrijf']; ?>"><br><br>
         <input type="text" maxlength="100" class="css-input" name="naamBedrijf" required value="<?php echo $row['naamBedrijf']; ?>"><br><br>
