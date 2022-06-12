@@ -19,8 +19,9 @@ if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GLR.WEB is voor de studenten van Grafisch Lyceum Rotterdam om hun stage te registreren">
     <meta name="keywords" content="GLR, GLR.WEB, Stage, Stagewebsite, Grafisch Lyceum Rotterdam">
-    <title>GLR.WEB - Dashboard</title>
-    <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+    <title>GLR.WEB - Class Overview</title>
+<!--    <link rel="stylesheet" href="css/dashboard.css" type="text/css">-->
+    <link rel="stylesheet" href="css/table.css" type="text/css">
 
 </head>
 <body>
@@ -38,7 +39,7 @@ if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
         <div class="nav-wrapper">
             <ul>
 
-                <!--HEADER PHP KOMT HIER NOG-->
+                <!--HEADER PHP-->
                 <li><a href="index.php">Home</a></li>
                 <?php
                 if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
@@ -61,8 +62,44 @@ if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
         </div>
     </nav>
 </div>
-<div class="dashboard">
-    <h1>Welcome back, <?php echo $_SESSION['mentorNo']?></h1><br>
-    <button class="button button8" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/overview_mentor.php'">See Internships</button></div>
+    <div class="table">
+        <h1>Class Overview</h1><br>
+        <!--Table-->
+        <?php
+
+        $result = "SELECT * FROM Stage_Student RIGHT JOIN Users_Student ON Users_Student.studentNo = Stage_Student.studentID;";
+
+        $result = mysqli_query($link, $result);
+
+        echo "<table>";
+
+        echo "<tr>";
+
+        echo "<th>Name of Company</th>";
+        echo "<th>Place</th>";
+        echo "<th>URL</th>";
+        echo "<th>Contact Person</th>";
+        echo "<th>Date of Start</th>";
+        echo "<th>Contract</th>";
+
+        echo "</tr>";
+
+        while ($row = mysqli_fetch_array($result)) {
+            echo "<tr>";
+
+            echo "<td>" . $row['naamBedrijf'] . "</td>";
+            echo "<td>" . $row['plaatsBedrijf'] . "</td>";
+            echo "<td>" . $row['linkBedrijf'] . "</td>";
+            echo "<td>" . $row['contactVoornaamBedrijf'] . " " . $row['contactAchternaamBedrijf'] . "</td>";
+            echo "<td>" . $row['datumBedrijf'] . "</td>";
+            echo "<td>" . $row['contract'] . "</td>";
+
+        }
+
+
+
+        echo "</table>"
+        ?>
+    </div>
 </body>
 </html>

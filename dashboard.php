@@ -62,10 +62,10 @@ exit;
     </nav>
 </div>
 <div class="dashboard">
-<h1>Welcome back, <?php echo $_SESSION['voornaam']; ?></h1><br>
+<h1>Welcome back, <?php echo $_SESSION['studentNo']; ?></h1><br>
     <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/create_student.php'">Register Internship</button>
     <br>
-    <button class="button button7" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/update_student.php'">Update Internship</button>
+    <button class="button button7" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/update_student.php?studentNo=<?php echo $_SESSION['studentNo']?>'">Update Internship</button>
     <br>
     <button class="button button8" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/delete_student.php'">Delete Internship</button>
     <br>

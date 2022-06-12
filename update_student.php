@@ -1,5 +1,22 @@
 <?php
+
+require 'php/config.php';
 session_start();
+
+// Get StudentNo
+$studentNo = $_GET['studentNo'];
+
+if (is_numeric($studentNo)) {
+    $result = mysqli_query($link, "SELECT * FROM Stage_Student WHERE StudentID = '$studentNo'");
+
+
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_array($result);
+    } else {
+        echo "geen leden gevonden";
+        exit();
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +26,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="GLR.WEB is voor de studenten van Grafisch Lyceum Rotterdam om hun stage te registreren">
     <meta name="keywords" content="GLR, GLR.WEB, Stage, Stagewebsite, Grafisch Lyceum Rotterdam">
-    <title>GLR.WEB - Create</title>
+    <title>GLR.WEB - Update</title>
     <link rel="stylesheet" href="css/style_login.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -52,20 +69,20 @@ session_start();
 </div>
 <div class="body">
     <h1>Add Internship</h1>
-<!--    <p>Add your internship information here.</p>-->
-    <form action="php/create_student_verwerk.php" method="post">
+    <!--    <p>Add your internship information here.</p>-->
+    <form action="php/update_student_verwerk.php" method="post">
+        <input type="hidden" name="StudentID" value="<?php echo $studentNo; ?>">
         <label>Yes I have a contract</label>
-        <input type="radio" class="css-input" name="contract" id="contract_y" value="Contract made"><br><br>
+        <input type="radio" class="css-input" name="contract" id="contract_y" value="<?php if($row['contract'] == 'Contract made') echo 'checked="checked"';?>"><br><br>
         <label>No I haven't</label>
-        <input type="radio" class="css-input" name="contract" id="contract_n" value="No contract made"><br><br>
+        <input type="radio" class="css-input" name="contract" id="contract_n" value="<?php if($row['contract'] == 'No contract made') echo 'checked="checked"';?>"><br><br>
 
-        <input type="date" class="css-input" name="datumBedrijf" required placeholder="Date of Start"><br><br>
-        <input type="text" maxlength="100" class="css-input" name="naamBedrijf" required placeholder="Name of Company"><br><br>
-        <input type="text" maxlength="5" class="css-input" name="studentID" required placeholder="<?php echo $_SESSION["studentNo"];?>" readonly value="<?php echo $_SESSION["studentNo"];?>"><br><br>
-        <input type="text" maxlength="100" class="css-input" name="plaatsBedrijf" required placeholder="City"><br><br>
-        <input type="text" class="css-input" name="linkBedrijf" required placeholder="URL"><br><br>
-        <input type="text" maxlength="20" class="css-input" name="contactVoornaamBedrijf" required placeholder="Firstname Contactperson"><br><br>
-        <input type="text" maxlength="50" class="css-input" name="contactAchternaamBedrijf" required placeholder="Lastname Contactperson"><br><br>
+        <input type="date" class="css-input" name="datumBedrijf" required value="<?php echo $row['datumBedrijf']; ?>"><br><br>
+        <input type="text" maxlength="100" class="css-input" name="naamBedrijf" required value="<?php echo $row['naamBedrijf']; ?>"><br><br>
+        <input type="text" maxlength="100" class="css-input" name="plaatsBedrijf" required value="<?php echo $row['plaatsBedrijf']; ?>"><br><br>
+        <input type="text" class="css-input" name="linkBedrijf" required value="<?php echo $row['linkBedrijf']; ?>"><br><br>
+        <input type="text" maxlength="20" class="css-input" name="contactVoornaamBedrijf" required value="<?php echo $row['contactVoornaamBedrijf']; ?>"><br><br>
+        <input type="text" maxlength="50" class="css-input" name="contactAchternaamBedrijf" required value="<?php echo $row['contactAchternaamBedrijf']; ?>"><br><br>
 
         <button type="submit" class="button button5">Login</button>
     </form>

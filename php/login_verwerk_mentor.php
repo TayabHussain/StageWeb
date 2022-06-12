@@ -11,11 +11,11 @@ if (strlen($mentorNo) && strlen($wachtwoord) > 0) {
     $sql = "SELECT * FROM Users_Mentor WHERE mentorNo = '$mentorNo' AND wachtwoord = '$wachtwoord'  ";
 
     $result = mysqli_query($link, $sql);
-
+    
     if (mysqli_num_rows($result) == 1) {
 
-
         $_SESSION['mentorNo'] = $mentorNo;
+
 
         header("Location: ../dashboard_mentor.php");
     }
