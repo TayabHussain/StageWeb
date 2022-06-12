@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
+    header("Location: index.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,13 +1,17 @@
 <?php
-
 require 'php/config.php';
 session_start();
 
-// Get StudentNo
-$studentNo = $_GET['studentNo'];
+if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
+    header("Location: index.php");
+    exit;
+}
 
-if (is_numeric($studentNo)) {
-    $result = mysqli_query($link, "SELECT * FROM Stage_Student WHERE StudentID = '$studentNo'");
+// Get StudentNo
+$studentID = $_GET['StudentID'];
+
+if (is_numeric($studentID)) {
+    $result = mysqli_query($link, "SELECT * FROM Stage_Student WHERE StudentID = '$studentID'");
 
 
     if (mysqli_num_rows($result) == 1) {
@@ -71,7 +75,7 @@ if (is_numeric($studentNo)) {
     <h1>Add Internship</h1>
     <!--    <p>Add your internship information here.</p>-->
     <form action="php/update_student_verwerk.php" method="post">
-        <input type="hidden" name="StudentID" value="<?php echo $studentNo; ?>">
+        <input type="hidden" name="StudentID" value="<?php echo $studentID; ?>">
         <label>Yes I have a contract</label>
         <input type="radio" class="css-input" name="contract" id="contract_y" value="<?php if($row['contract'] == 'Contract made') echo 'checked="checked"';?>"><br><br>
         <label>No I haven't</label>
@@ -84,7 +88,7 @@ if (is_numeric($studentNo)) {
         <input type="text" maxlength="20" class="css-input" name="contactVoornaamBedrijf" required value="<?php echo $row['contactVoornaamBedrijf']; ?>"><br><br>
         <input type="text" maxlength="50" class="css-input" name="contactAchternaamBedrijf" required value="<?php echo $row['contactAchternaamBedrijf']; ?>"><br><br>
 
-        <button type="submit" class="button button5">Login</button>
+        <button type="submit" class="button button5">Update</button>
     </form>
     <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard.php'">Go Back</button>
 </div>
