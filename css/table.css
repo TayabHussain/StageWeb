@@ -207,9 +207,16 @@ nav ul li a {
 
 /*NAV BAR END*/
 /*BODY BEGIN*/
-.table table {
-    position: center;
+.table {
+    display:flex;
     text-align: center;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
 
+}
+
+.container {
+    overflow: hidden;
 }
 /*BODY END*/

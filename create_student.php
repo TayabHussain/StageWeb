@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'php/config.php';
 if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
     header("Location: index.php");
     exit;
@@ -35,9 +36,10 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
                 <li><a href="index.php">Home</a></li>
                 <?php
                 if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
+                    echo '<li><a href="login.php">Login</a></li>';
                 } else {
                     echo '<li><a href="dashboard.php">Dashboard</a></li>';
-
+                    echo '<li><a href="logout.php">Logout</a></li>';
                 }
                 ?>
                 <?php
@@ -45,10 +47,11 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
 
                 } else {
                     echo '<li><a href="dashboard_mentor.php">Dashboard</a></li>';
+                    echo '<li><a href="logout.php">Logout</a></li>';
                 }
                 ?>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="logout.php">Logout</a></li>
+
+
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </div>
@@ -56,17 +59,20 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
 </div>
 <div class="body">
     <h1>Add Internship</h1>
-<!--    <p>Add your internship information here.</p>-->
-<!--    --><?php
-//    $check = mysqli_query($link, "SELECT * FROM Stage_Student WHERE StudentID = '" . $_SESSION['studentNo'] . "'");
-//
-//    if (mysqli_num_rows($check) == 1) {
-//        echo "<strong>You already have a internship. You can make a new one by deleting it or update it.</strong>";
-//    } else {
-//        echo "form";
-//    }
-//    ?>
-    <form action="php/create_student_verwerk.php" method="post">
+    <p>Add your internship information here.</p>
+    <?php
+    $nummer = $_SESSION['studentNo'];
+
+    $check = "SELECT * FROM Stage_Student WHERE studentID = 85122";
+
+    $result= mysqli_query($link,$check);
+
+    if (mysqli_num_rows($result) === 1) {
+        echo "<br><strong>You already have a internship. You can make a new one by deleting it or update it.</strong>";
+    } else {
+
+   ?>
+        <form action="php/create_student_verwerk.php" method="post">
         <label>Yes I have a contract</label>
         <input type="radio" class="css-input" name="contract" id="contract_y" value="Contract made"><br><br>
         <label>No I haven't</label>
@@ -82,6 +88,9 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
 
         <button type="submit" class="button button5">Login</button>
     </form>
+  <?php
+    }
+      ?>
     <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard.php'">Go Back</button>
 </div>
 </body>
