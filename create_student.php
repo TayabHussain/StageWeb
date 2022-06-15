@@ -68,6 +68,25 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
     $result= mysqli_query($link,$check);
 
     if (mysqli_num_rows($result) === 1) {
+
+        while ($row = mysqli_fetch_array($result)) {
+//            echo "<tr>";
+
+            echo "<td>" . $row['naamBedrijf'] . "</td>";
+            echo "<br>";
+            echo "<td>" . $row['plaatsBedrijf'] . "</td>";
+            echo "<br>";
+            echo "<td>" . $row['linkBedrijf'] . "</td>";
+            echo "<br>";
+            echo "<td>" . $row['contactVoornaamBedrijf'] . " " . $row['contactAchternaamBedrijf'] . "</td>";
+            echo "<br>";
+            echo "<td>" . $row['datumBedrijf'] . "</td>";
+            echo "<br>";
+            echo "<td>" . $row['contract'] . "</td>";
+
+        }
+        
+
         echo "<br><strong>You already have a internship. You can make a new one by deleting it or update it.</strong><br><br>";
     } else {
 

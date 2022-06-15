@@ -18,9 +18,9 @@ if (is_numeric($studentID)) {
 
     $query = mysqli_query($link, $sql);
 
-    header("location: ../worked_create.php");
+    header("location: ../success_update.php");
 } else {
-    header("Location: ../error_create.php");
+    header("Location: ../error_update.php");
 }
 
 ?>
