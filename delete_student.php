@@ -15,11 +15,13 @@ if (is_numeric($studentID)) {
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
     } else {
-        echo "No record found";
+        header("Location: no_stage.php");
+//        echo "No record found";
         exit();
     }
 } else {
-    echo "Wrong record ID";
+    header("Location: no_record.php");
+//    echo "Wrong record ID";
     exit();
 }
 ?>
@@ -53,9 +55,10 @@ if (is_numeric($studentID)) {
                 <li><a href="index.php">Home</a></li>
                 <?php
                 if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
+                    echo '<li><a href="login.php">Login</a></li>';
                 } else {
                     echo '<li><a href="dashboard.php">Dashboard</a></li>';
-
+                    echo '<li><a href="logout.php">Logout</a></li>';
                 }
                 ?>
                 <?php
@@ -63,10 +66,11 @@ if (is_numeric($studentID)) {
 
                 } else {
                     echo '<li><a href="dashboard_mentor.php">Dashboard</a></li>';
+                    echo '<li><a href="logout.php">Logout</a></li>';
                 }
                 ?>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="logout.php">Logout</a></li>
+
+
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </div>

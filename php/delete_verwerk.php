@@ -7,14 +7,14 @@ if (is_numeric($StudentID)) {
     $result = mysqli_query($link, "DELETE FROM Stage_Student WHERE StudentID = '$StudentID'");
 
     if ($result) {
-        echo "Deleted";
+        header("Location: ../success_delete.php");
         exit();
     } else {
-        echo "Something went wrong.";
+        header("Location: ../no_record.php");
         exit();
 }
 } else {
-    echo "No ID found";
+    header("Location: ../no_stage.php");
     exit();
 }
 ?>

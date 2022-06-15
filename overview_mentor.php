@@ -39,13 +39,14 @@ if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
         <div class="nav-wrapper">
             <ul>
 
-                <!--HEADER PHP-->
+                <!--HEADER PHP KOMT HIER NOG-->
                 <li><a href="index.php">Home</a></li>
                 <?php
                 if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
+                    echo '<li><a href="login.php">Login</a></li>';
                 } else {
                     echo '<li><a href="dashboard.php">Dashboard</a></li>';
-
+                    echo '<li><a href="logout.php">Logout</a></li>';
                 }
                 ?>
                 <?php
@@ -53,17 +54,19 @@ if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
 
                 } else {
                     echo '<li><a href="dashboard_mentor.php">Dashboard</a></li>';
+                    echo '<li><a href="logout.php">Logout</a></li>';
                 }
                 ?>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="logout.php">Logout</a></li>
+
+
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </div>
     </nav>
 </div>
     <div class="table">
-        <h1>Class Overview</h1><br>
+        <h1>Class Overview</h1>
+
         <!--Table-->
         <?php
 
