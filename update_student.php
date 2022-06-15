@@ -17,7 +17,7 @@ if (is_numeric($studentID)) {
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
     } else {
-        echo "geen leden gevonden";
+        header("Location: no_update.php");
         exit();
     }
 }
