@@ -298,4 +298,13 @@ input::-webkit-input-placeholder {
     background-color: #555555;
     color: white;
 }
+table {
+    flex-direction: column; !important;
+    display:flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 1.2rem;
+    top: 100px;
+}
 /*BODY END*/

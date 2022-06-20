@@ -1,27 +1,37 @@
 <?php
+require 'php/config.php';
 session_start();
 
-require "php/config.php";
-
 if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
-header("Location: index.php");
-exit;
+    header("Location: index.php");
+    exit;
 }
 
+// Get StudentNo
+$studentID = $_GET['studentID'];
 
-// session php here**
+if (is_numeric($studentID)) {
+    $result = mysqli_query($link, "SELECT * FROM Evaluatie_Stage WHERE studentID = '$studentID'");
+
+
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_array($result);
+    } else {
+        header("Location: no_update.php");
+        exit();
+    }
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="GLR.WEB is voor de studenten van Grafisch Lyceum Rotterdam om hun stage te registreren">
     <meta name="keywords" content="GLR, GLR.WEB, Stage, Stagewebsite, Grafisch Lyceum Rotterdam">
-    <title>GLR.WEB - Dashboard</title>
-    <link rel="stylesheet" href="css/dashboard.css" type="text/css">
-
+    <title>GLR.WEB - Update</title>
+    <link rel="stylesheet" href="css/style_login.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="container">
@@ -64,15 +74,18 @@ exit;
         </div>
     </nav>
 </div>
-<div class="dashboard">
-<h1>Welcome back, <?php echo $_SESSION['studentNo']; ?></h1><br>
-    <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/create_student.php'">Register Internship</button>
-    <br>
-    <button class="button button7" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/update_student.php?StudentID=<?php echo $_SESSION['studentNo']?>'">Update Internship</button>
-    <br>
-    <button class="button button8" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/delete_student.php?StudentID=<?php echo $_SESSION['studentNo']?>'">Delete Internship</button>
-    <br>
-    <button class="button button8" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard_evaluation.php?StudentID=<?php echo $_SESSION['studentNo']?>'">Evaluation Page</button>
+<div class="body">
+    <h1>Update Evaluation</h1>
+    <form action="php/update_evaluation_verwerk.php" method="post">
+        <input type="hidden" name="StudentID" value="<?php echo $studentID; ?>">
+        <input type="number" class="css-input" name="cijferBegeleiding" required placeholder="Grade of Guidance"><br><br>
+        <input type="number" class="css-input" name="cijferTechniek" required placeholder="Grade of Guidance"><br><br>
+        <input type="number" class="css-input" name="cijferAlgemeen" required placeholder="General Grade"><br><br>
+        <input type="text" class="css-input" name="opmerking" placeholder="Notes"><br><br>
+
+        <button type="submit" class="button button5">Update</button>
+    </form>
+    <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard.php'">Go Back</button>
 </div>
 </body>
 </html>

@@ -4,8 +4,8 @@ session_start();
 require "php/config.php";
 
 if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
-header("Location: index.php");
-exit;
+    header("Location: index.php");
+    exit;
 }
 
 
@@ -65,14 +65,47 @@ exit;
     </nav>
 </div>
 <div class="dashboard">
-<h1>Welcome back, <?php echo $_SESSION['studentNo']; ?></h1><br>
-    <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/create_student.php'">Register Internship</button>
-    <br>
-    <button class="button button7" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/update_student.php?StudentID=<?php echo $_SESSION['studentNo']?>'">Update Internship</button>
-    <br>
-    <button class="button button8" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/delete_student.php?StudentID=<?php echo $_SESSION['studentNo']?>'">Delete Internship</button>
-    <br>
-    <button class="button button8" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard_evaluation.php?StudentID=<?php echo $_SESSION['studentNo']?>'">Evaluation Page</button>
+    <h1>Evaluation Dashboard</h1><br>
+    <p>Your current evaluation:</p>
+    <?php
+    $studentID = $_SESSION['studentNo'];
+    $result = "SELECT * FROM Evaluatie_Stage WHERE studentID = '$studentID'";
+
+    $result = mysqli_query($link, $result);
+
+    if (mysqli_num_rows($result) == 1) {
+
+        echo "<table>";
+
+        echo "<tr>";
+
+        echo "<th>Grade Of Guidance</th>";
+        echo "<th>Grade Of Engineering</th>";
+        echo "<th>General Grade</th>";
+        echo "<th>Notes</th>";
+
+        echo "</tr>";
+
+        while ($row = mysqli_fetch_array($result)) {
+            echo "<tr>";
+
+            echo "<td>" . $row['cijferBegeleiding'] . "</td>";
+            echo "<td>" . $row['cijferTechniek'] . "</td>";
+            echo "<td>" . $row['cijferAlgemeen'] . "</td>";
+            echo "<td>" . $row['opmerking'] . "</td>";
+        }
+
+        echo "</tr>";
+        echo "</table>";
+    } else {
+        echo "<p>You don't have an evaluation yet.</p>";
+    }
+    ?>
+
+    <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/add_evaluation.php?studentID=<?php echo $studentID?>'">Add Evaluation</button>
+    <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/update_evaluation.php?studentID=<?php echo $studentID?>'">Update Evaluation</button>
+    <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/delete_evaluation.php?studentID=<?php echo $studentID?>'">Delete Evaluation</button>
+    <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard.php'">Go Back</button>
 </div>
 </body>
 </html>
