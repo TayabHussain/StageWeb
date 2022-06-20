@@ -78,7 +78,7 @@ if (is_numeric($studentID)) {
     </nav>
 </div>
 <div class="body">
-    <h1>Delete Internship</h1>
+    <h1>Delete Evaluation</h1>
     <p>Are you sure to delete the evaluation?</p>
 
     <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/php/delete_verwerk_evaluation.php?StudentID=<?php echo $studentID; ?>'">DELETE</button>
