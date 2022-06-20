@@ -19,7 +19,7 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="GLR.WEB is voor de studenten van Grafisch Lyceum Rotterdam om hun stage te registreren">
     <meta name="keywords" content="GLR, GLR.WEB, Stage, Stagewebsite, Grafisch Lyceum Rotterdam">
-    <title>GLR.WEB - Dashboard</title>
+    <title>GLR.WEB - Dashboard Evaluation</title>
     <link rel="stylesheet" href="css/dashboard.css" type="text/css">
 
 </head>

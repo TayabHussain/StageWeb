@@ -1,26 +1,6 @@
 <?php
-require 'php/config.php';
 session_start();
 
-if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
-    header("Location: index.php");
-    exit;
-}
-
-// Get StudentNo
-$studentID = $_GET['studentID'];
-
-if (is_numeric($studentID)) {
-    $result = mysqli_query($link, "SELECT * FROM Evaluatie_Stage WHERE studentID = '$studentID'");
-
-
-    if (mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_array($result);
-    } else {
-        header("Location: no_evaluation.php");
-        exit();
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +10,7 @@ if (is_numeric($studentID)) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="GLR.WEB is voor de studenten van Grafisch Lyceum Rotterdam om hun stage te registreren">
     <meta name="keywords" content="GLR, GLR.WEB, Stage, Stagewebsite, Grafisch Lyceum Rotterdam">
-    <title>GLR.WEB - Update</title>
+    <title>GLR.WEB - Error</title>
     <link rel="stylesheet" href="css/style_login.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -75,18 +55,8 @@ if (is_numeric($studentID)) {
     </nav>
 </div>
 <div class="body">
-    <h1>Update Evaluation</h1>
-    <form action="php/update_evaluation_verwerk.php" method="post">
-        <input type="hidden" name='ID' value='<?php echo $row['stageID']; ?>'>
-        <input type="hidden" name="StudentID" value="<?php echo $studentID; ?>">
-        <input type="number" class="css-input" name="cijferBegeleiding" value="<?php echo $row['cijferBegeleiding'] ?>" required placeholder="Grade of Guidance"><br><br>
-        <input type="number" class="css-input" name="cijferTechniek" value="<?php echo $row['cijferTechniek']?>" required placeholder="Grade of Guidance"><br><br>
-        <input type="number" class="css-input" name="cijferAlgemeen" value="<?php echo $row['cijferAlgemeen']?>" required placeholder="General Grade"><br><br>
-        <input type="text" class="css-input" name="opmerking" value="<?php echo $row['opmerking']?>" placeholder="Notes"><br><br>
+    <h1>Add an evaluation first. Before you can delete.</h1><br><br>
+    <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard_evaluation.php'">Go To Dashboard</button>
 
-        <button type="submit" class="button button5">Update</button>
-    </form>
-    <button class="button button5" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard_evaluation.php'">Go Back</button>
+
 </div>
-</body>
-</html>

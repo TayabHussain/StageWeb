@@ -10,7 +10,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="GLR.WEB is voor de studenten van Grafisch Lyceum Rotterdam om hun stage te registreren">
     <meta name="keywords" content="GLR, GLR.WEB, Stage, Stagewebsite, Grafisch Lyceum Rotterdam">
-    <title>GLR.WEB - Login</title>
+    <title>GLR.WEB - Success</title>
     <link rel="stylesheet" href="css/style_login.css" rel="stylesheet" type="text/css">
 </head>
 <body>

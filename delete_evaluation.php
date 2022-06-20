@@ -10,17 +10,17 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
 $studentID = $_GET['studentID'];
 
 if (is_numeric($studentID)) {
-    $result = mysqli_query($link, "SELECT * FROM `Stage_Student` WHERE studentID = '$studentID';");
+    $result = mysqli_query($link, "SELECT * FROM `Evaluatie_Stage` WHERE studentID = '$studentID';");
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_array($result);
     } else {
-        header("Location: no_stage.php");
+        header("Location: no_evaluation.php");
 //        echo "No record found";
         exit();
     }
 } else {
-    header("Location: no_record.php");
+    header("Location: no_evaluation.php");
 //    echo "Wrong record ID";
     exit();
 }
