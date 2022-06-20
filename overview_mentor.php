@@ -42,18 +42,19 @@ if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
                 <!--HEADER PHP KOMT HIER NOG-->
                 <li><a href="index.php">Home</a></li>
                 <?php
-                if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
+
+                $StudentLoggedin = isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) != 0;
+                $MentorLoggedin = isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) != 0;
+
+                if (!$StudentLoggedin && !$MentorLoggedin) {
                     echo '<li><a href="login.php">Login</a></li>';
                 } else {
-                    echo '<li><a href="dashboard.php">Dashboard</a></li>';
-                    echo '<li><a href="logout.php">Logout</a></li>';
-                }
-                ?>
-                <?php
-                if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
-
-                } else {
-                    echo '<li><a href="dashboard_mentor.php">Dashboard</a></li>';
+                    if ($MentorLoggedin) {
+                        echo '<li><a href="dashboard_mentor.php">Dashboard</a></li>';
+                    }
+                    else {
+                        echo '<li><a href="dashboard.php">Dashboard</a></li>';
+                    }
                     echo '<li><a href="logout.php">Logout</a></li>';
                 }
                 ?>
@@ -69,33 +70,26 @@ if (!isset($_SESSION['mentorNo']) || strlen($_SESSION['mentorNo']) == 0) {
 
         <!--Table-->
         <?php
+        $studentID = $_SESSION['studentNo'];
 
-        $result = "SELECT * FROM Stage_Student RIGHT JOIN Users_Student ON Users_Student.studentNo = Stage_Student.studentID;";
+        $result = "SELECT * FROM Stage_Student";
 
         $result = mysqli_query($link, $result);
 
         echo "<table>";
 
         echo "<tr>";
+        echo "<th>StudentID</th>";
+        echo "<th>Check Details</th>";
 
-        echo "<th>Name of Company</th>";
-        echo "<th>Place</th>";
-        echo "<th>URL</th>";
-        echo "<th>Contact Person</th>";
-        echo "<th>Date of Start</th>";
-        echo "<th>Contract</th>";
 
         echo "</tr>";
 
         while ($row = mysqli_fetch_array($result)) {
             echo "<tr>";
 
-            echo "<td>" . $row['naamBedrijf'] . "</td>";
-            echo "<td>" . $row['plaatsBedrijf'] . "</td>";
-            echo "<td>" . $row['linkBedrijf'] . "</td>";
-            echo "<td>" . $row['contactVoornaamBedrijf'] . " " . $row['contactAchternaamBedrijf'] . "</td>";
-            echo "<td>" . $row['datumBedrijf'] . "</td>";
-            echo "<td>" . $row['contract'] . "</td>";
+            echo "<td>" . $row['studentID'] . "</td>";
+            echo "<td><a href='detail.php?studentID=" . $row['studentID'] . "'>Details</a></td>";
 
         }
 

@@ -208,12 +208,14 @@ nav ul li a {
 /*NAV BAR END*/
 /*BODY BEGIN*/
 .table {
+    flex-direction: column; !important;
     display:flex;
     text-align: center;
-    height: 80vh;
+    height: 30vh;
     justify-content: center;
     align-items: center;
-
+    margin: 1.2rem;
+    top: 100px;
 }
 
 .container {
