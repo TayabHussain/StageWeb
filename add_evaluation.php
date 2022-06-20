@@ -5,6 +5,7 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
     header("Location: index.php");
     exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,24 +63,26 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
     <h1>Add Internship</h1>
     <p>Add your internship information here.</p>
     <?php
-    $studentID = $_GET['studentNo'];
+    $studentID = $_SESSION['studentNo'];
 
     $check = "SELECT * FROM Evaluatie_Stage WHERE studentID = '$studentID'";
-    $check2 = "SELECT ID FROM Stage_Student WHERE studentID = '$studentID'";
-
-    $result2 = mysqli_query($link,$check2);
-
-    while ($row = mysqli_fetch_array($result2)) {
-        echo $row['ID'];
-    }
 
     $result = mysqli_query($link,$check);
 
 
     if (mysqli_num_rows($result) === 1) {
+        echo "<table>";
 
+        echo "<tr>";
+
+        echo "<th>Grade Of Guidance</th>";
+        echo "<th>Grade Of Engineering</th>";
+        echo "<th>General Grade</th>";
+        echo "<th>Notes</th>";
+
+        echo "</tr>";
         while ($row = mysqli_fetch_array($result)) {
-//            echo "<tr>";
+            echo "<tr>";
 
             echo "<td>" . $row['cijferBegeleiding'] . "</td>";
             echo "<br>";
@@ -91,13 +94,27 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
 
         }
 
+        echo "</tr>";
+        echo "</table>";
 
         echo "<br><strong>You already have an evaluation. You can make a new one by deleting it or update it.</strong><br><br>";
     } else {
 
+        $check2 = "SELECT ID FROM Stage_Student WHERE studentID = '$studentID' ";
+
+        $result2 = mysqli_query($link,$check2);
+
+
         ?>
         <form action="php/create_evaluation_verwerk.php" method="post">
-            <input type="hidden" name="studentID" value="<?php echo $_SESSION["studentNo"];?>">
+            <?php
+            while ($row = mysqli_fetch_array($result2)) {
+                $ID = $row['ID'];
+               echo "<input type='hidden' name='ID' value='$ID'>";
+            }
+
+            ?>
+            <input type="hidden" name="studentID" value="<?php echo $_SESSION['studentNo'];?>">
             <input type="number" class="css-input" name="cijferBegeleiding" required placeholder="Grade of Guidance"><br><br>
             <input type="number" class="css-input" name="cijferTechniek" required placeholder="Grade of Guidance"><br><br>
             <input type="number" class="css-input" name="cijferAlgemeen" required placeholder="General Grade"><br><br>

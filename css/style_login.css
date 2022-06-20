@@ -292,4 +292,14 @@ input::-webkit-input-placeholder {
     cursor: pointer;
 }
 
+table {
+    flex-direction: column; !important;
+    display:flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 1.2rem;
+    top: 100px;
+}
+
 /*BODY END*/
