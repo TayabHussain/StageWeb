@@ -103,7 +103,7 @@ if (!isset($_SESSION['studentNo']) || strlen($_SESSION['studentNo']) == 0) {
     ?>
 
     <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/add_evaluation.php?studentID=<?php echo $studentID?>'">Add Evaluation</button>
-    <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/update_evaluation.php?studentID=<?php echo $studentID?>'">Update Evaluation</button>
+    <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/update_evaluation.php?studentID=<?php echo $_SESSION['studentNo']?>'">Update Evaluation</button>
     <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/delete_evaluation.php?studentID=<?php echo $studentID?>'">Delete Evaluation</button>
     <button class="button button6" onclick="location.href = 'https://85122.ict-lab.nl/BEROEPS/StageWebsite/dashboard.php'">Go Back</button>
 </div>

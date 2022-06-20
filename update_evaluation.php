@@ -77,11 +77,12 @@ if (is_numeric($studentID)) {
 <div class="body">
     <h1>Update Evaluation</h1>
     <form action="php/update_evaluation_verwerk.php" method="post">
+        <input type="hidden" name='ID' value='<?php echo $row['stageID']; ?>'>
         <input type="hidden" name="StudentID" value="<?php echo $studentID; ?>">
-        <input type="number" class="css-input" name="cijferBegeleiding" required placeholder="Grade of Guidance"><br><br>
-        <input type="number" class="css-input" name="cijferTechniek" required placeholder="Grade of Guidance"><br><br>
-        <input type="number" class="css-input" name="cijferAlgemeen" required placeholder="General Grade"><br><br>
-        <input type="text" class="css-input" name="opmerking" placeholder="Notes"><br><br>
+        <input type="number" class="css-input" name="cijferBegeleiding" value="<?php echo $row['cijferBegeleiding'] ?>" required placeholder="Grade of Guidance"><br><br>
+        <input type="number" class="css-input" name="cijferTechniek" value="<?php echo $row['cijferTechniek']?>" required placeholder="Grade of Guidance"><br><br>
+        <input type="number" class="css-input" name="cijferAlgemeen" value="<?php echo $row['cijferAlgemeen']?>" required placeholder="General Grade"><br><br>
+        <input type="text" class="css-input" name="opmerking" value="<?php echo $row['opmerking']?>" placeholder="Notes"><br><br>
 
         <button type="submit" class="button button5">Update</button>
     </form>
