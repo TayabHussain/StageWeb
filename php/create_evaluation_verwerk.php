@@ -20,11 +20,9 @@ if (strlen($cijferBegeleiding) > 0 &&
 
     $query = mysqli_query($link, $sql);
 
-//    header("location: ../worked_create.php");
-    echo "Added";
+    header("location: ../worked_evaluation.php");
 } else {
-//    header("Location: ../error_create.php");
-   echo "Error";
+    header("Location: ../error_evaluation.php");
 }
 
 ?>
